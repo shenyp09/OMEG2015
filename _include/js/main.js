@@ -1,17 +1,15 @@
 jQuery(function($){
 
-var CHAKRA = window.CHAKRA || {};
+var BRUSHED = window.BRUSHED || {};
 
 /* ==================================================
    Mobile Navigation
 ================================================== */
-/* Clone Menu for use later */
 var mobileMenuClone = $('#menu').clone().attr('id', 'navigation-mobile');
 
-CHAKRA.mobileNav = function(){
+BRUSHED.mobileNav = function(){
 	var windowWidth = $(window).width();
 	
-	// Show Menu or Hide the Menu
 	if( windowWidth <= 979 ) {
 		if( $('#mobile-nav').length > 0 ) {
 			mobileMenuClone.insertAfter('#menu');
@@ -25,13 +23,15 @@ CHAKRA.mobileNav = function(){
 	}
 }
 
-// Call the Event for Menu 
-CHAKRA.listenerMenu = function(){
+BRUSHED.listenerMenu = function(){
 	$('#mobile-nav').on('click', function(e){
 		$(this).toggleClass('open');
 		
-		$('#navigation-mobile').stop().slideToggle(350, 'easeOutExpo');
-		
+		if ($('#mobile-nav').hasClass('open')) {
+			$('#navigation-mobile').slideDown(500, 'easeOutExpo');
+		} else {
+			$('#navigation-mobile').slideUp(500, 'easeOutExpo');
+		}
 		e.preventDefault();
 	});
 	
@@ -46,7 +46,7 @@ CHAKRA.listenerMenu = function(){
    Slider Options
 ================================================== */
 
-CHAKRA.slider = function(){
+BRUSHED.slider = function(){
 	$.supersized({
 		// Functionality
 		slideshow               :   1,			// Slideshow on/off
@@ -54,11 +54,11 @@ CHAKRA.slider = function(){
 		start_slide             :   1,			// Start slide (0 is random)
 		stop_loop				:	0,			// Pauses slideshow on last slide
 		random					: 	0,			// Randomize slide order (Ignores start slide)
-		slide_interval          :   8000,		// Length between transitions
+		slide_interval          :   12000,		// Length between transitions
 		transition              :   1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-		transition_speed		:	500,		// Speed of transition
+		transition_speed		:	300,		// Speed of transition
 		new_window				:	1,			// Image links open in new window/tab
-		pause_hover             :   1,			// Pause slideshow on hover
+		pause_hover             :   0,			// Pause slideshow on hover
 		keyboard_nav            :   1,			// Keyboard navigation on/off
 		performance				:	1,			// 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
 		image_protect			:	1,			// Disables image dragging and right click with Javascript
@@ -77,10 +77,10 @@ CHAKRA.slider = function(){
 		thumb_links				:	0,			// Individual thumb links for each slide
 		thumbnail_navigation    :   0,			// Thumbnail navigation
 		slides 					:  	[			// Slideshow Images
-											{image : '_include/img/slider-images/image01.jpg', title : '<div class="slide-content">OMEG2015</div>', thumb : '', url : ''},
-											{image : '_include/img/slider-images/image02.jpg', title : '<div class="slide-content">Responsive Design</div>', thumb : '', url : ''},
-											{image : '_include/img/slider-images/image03.jpg', title : '<div class="slide-content">FullScreen Gallery</div>', thumb : '', url : ''},
-											{image : '_include/img/slider-images/image04.jpg', title : '<div class="slide-content">Showcase Your Work</div>', thumb : '', url : ''}  
+											{image : '_include/img/slider-images/image01.jpg', title : '<div class="slide-content">Brushed</div>', thumb : '', url : ''},
+											{image : '_include/img/slider-images/image02.jpg', title : '<div class="slide-content">Brushed</div>', thumb : '', url : ''},
+											{image : '_include/img/slider-images/image03.jpg', title : '<div class="slide-content">Brushed</div>', thumb : '', url : ''},
+											{image : '_include/img/slider-images/image04.jpg', title : '<div class="slide-content">Brushed</div>', thumb : '', url : ''}  
 									],
 									
 		// Theme Options			   
@@ -96,7 +96,7 @@ CHAKRA.slider = function(){
    Navigation Fix
 ================================================== */
 
-CHAKRA.nav = function(){
+BRUSHED.nav = function(){
 	$('.sticky-nav').waypoint('sticky');
 }
 
@@ -105,7 +105,7 @@ CHAKRA.nav = function(){
    Filter Works
 ================================================== */
 
-CHAKRA.filter = function (){
+BRUSHED.filter = function (){
 	if($('#projects').length > 0){		
 		var $container = $('#projects');
 		
@@ -158,19 +158,19 @@ CHAKRA.filter = function (){
    FancyBox
 ================================================== */
 
-CHAKRA.fancyBox = function(){
+BRUSHED.fancyBox = function(){
 	if($('.fancybox').length > 0 || $('.fancybox-media').length > 0 || $('.fancybox-various').length > 0){
 		
 		$(".fancybox").fancybox({				
-			padding : 0,
-			beforeShow: function () {
-				this.title = $(this.element).attr('title');
-				this.title = '<h4>' + this.title + '</h4>' + '<p>' + $(this.element).parent().find('img').attr('alt') + '</p>';
-			},
-			helpers : {
-				title : { type: 'inside' },
-			}
-		});
+				padding : 0,
+				beforeShow: function () {
+					this.title = $(this.element).attr('title');
+					this.title = '<h4>' + this.title + '</h4>' + '<p>' + $(this.element).parent().find('img').attr('alt') + '</p>';
+				},
+				helpers : {
+					title : { type: 'inside' },
+				}
+			});
 			
 		$('.fancybox-media').fancybox({
 			openEffect  : 'none',
@@ -178,18 +178,6 @@ CHAKRA.fancyBox = function(){
 			helpers : {
 				media : {}
 			}
-		});
-		
-		$(".fancybox-various").fancybox({
-			maxWidth	: 800,
-			maxHeight	: 600,
-			fitToView	: false,
-			width		: '70%',
-			height		: '70%',
-			autoSize	: false,
-			closeClick	: false,
-			openEffect	: 'none',
-			closeEffect	: 'none'
 		});
 	}
 }
@@ -199,7 +187,7 @@ CHAKRA.fancyBox = function(){
    Contact Form
 ================================================== */
 
-CHAKRA.contactForm = function(){
+BRUSHED.contactForm = function(){
 	$("#contact-submit").on('click',function() {
 		$contact_form = $('#contact-form');
 		
@@ -229,10 +217,12 @@ CHAKRA.contactForm = function(){
    Twitter Feed
 ================================================== */
 
-CHAKRA.tweetFeed = function(){
+BRUSHED.tweetFeed = function(){
+	
 	var valueTop = -64; // Margin Top Value
 	
     $("#ticker").tweet({
+          modpath: '_include/js/twitter/',
           username: "Bluxart", // Change this with YOUR ID
           page: 1,
           avatar_size: 0,
@@ -260,7 +250,7 @@ CHAKRA.tweetFeed = function(){
    Menu Highlight
 ================================================== */
 
-CHAKRA.menu = function(){
+BRUSHED.menu = function(){
 	$('#menu-nav, #menu-nav-mobile').onePageNav({
 		currentClass: 'current',
     	changeHash: false,
@@ -276,7 +266,7 @@ CHAKRA.menu = function(){
    Next Section
 ================================================== */
 
-CHAKRA.goSection = function(){
+BRUSHED.goSection = function(){
 	$('#nextsection').on('click', function(){
 		$target = $($(this).attr('href')).offset().top-30;
 		
@@ -289,7 +279,7 @@ CHAKRA.goSection = function(){
    GoUp
 ================================================== */
 
-CHAKRA.goUp = function(){
+BRUSHED.goUp = function(){
 	$('#goUp').on('click', function(){
 		$target = $($(this).attr('href')).offset().top-30;
 		
@@ -303,7 +293,7 @@ CHAKRA.goUp = function(){
 	Scroll to Top
 ================================================== */
 
-CHAKRA.scrollToTop = function(){
+BRUSHED.scrollToTop = function(){
 	var windowWidth = $(window).width(),
 		didScroll = false;
 
@@ -335,13 +325,22 @@ CHAKRA.scrollToTop = function(){
    Thumbs / Social Effects
 ================================================== */
 
-// Fix Hover on Touch Devices
-CHAKRA.utils = function(){
+BRUSHED.utils = function(){
 	
 	$('.item-thumbs').bind('touchstart', function(){
 		$(".active").removeClass("active");
       	$(this).addClass('active');
-    }); 
+    });
+	
+	$('.image-wrap').bind('touchstart', function(){
+		$(".active").removeClass("active");
+      	$(this).addClass('active');
+    });
+	
+	$('#social ul li').bind('touchstart', function(){
+		$(".active").removeClass("active");
+      	$(this).addClass('active');
+    });
 	
 }
 
@@ -349,7 +348,7 @@ CHAKRA.utils = function(){
    Accordion
 ================================================== */
 
-CHAKRA.accordion = function(){
+BRUSHED.accordion = function(){
 	var accordion_trigger = $('.accordion-heading.accordionize');
 	
 	accordion_trigger.delegate('.accordion-toggle','click', function(event){
@@ -371,7 +370,7 @@ CHAKRA.accordion = function(){
    Toggle
 ================================================== */
 
-CHAKRA.toggle = function(){
+BRUSHED.toggle = function(){
 	var accordion_trigger_toggle = $('.accordion-heading.togglize');
 	
 	accordion_trigger_toggle.delegate('.accordion-toggle','click', function(event){
@@ -391,106 +390,24 @@ CHAKRA.toggle = function(){
    Tooltip
 ================================================== */
 
-CHAKRA.toolTip = function(){ 
+BRUSHED.toolTip = function(){ 
     $('a[data-toggle=tooltip]').tooltip();
 }
 
-/* ==================================================
-   Map
-================================================== */
-
-CHAKRA.map = function(){
-	if($('.map').length > 0)
-	{
-
-		$('.map').each(function(i,e){
-
-			$map = $(e);
-			$map_id = $map.attr('id');
-			$map_lat = $map.attr('data-mapLat');
-			$map_lon = $map.attr('data-mapLon');
-			$map_zoom = parseInt($map.attr('data-mapZoom'));
-			$map_title = $map.attr('data-mapTitle');
-			
-			
-			
-			var latlng = new google.maps.LatLng($map_lat, $map_lon);			
-			var options = { 
-				scrollwheel: false,
-				draggable: false, 
-				zoomControl: false,
-				disableDoubleClickZoom: false,
-				disableDefaultUI: true,
-				zoom: $map_zoom,
-				center: latlng,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-			
-			var styles = [ 
-							{
-							  stylers: [
-								{ hue: "#2F3238" },
-								{ saturation: -20 }
-							  ]
-							}, {
-								featureType: "road",
-								elementType: "geometry",
-								stylers: [
-									{ lightness: 100 },
-									{ visibility: "simplified" }
-							  ]
-							}, {
-								featureType: "road",
-								elementType: "labels",
-								stylers: [
-									{ visibility: "off" }
-							  ]
-							}
-						];
-			
-			var styledMap = new google.maps.StyledMapType(styles,{name: "Styled Map"});
-			
-			var map = new google.maps.Map(document.getElementById($map_id), options);
-		
-			var image = '_include/img/marker.png';
-			var marker = new google.maps.Marker({
-				position: latlng,
-				map: map,
-				title: $map_title,
-				icon: image
-			});
-			
-			map.mapTypes.set('map_style', styledMap);
-  			map.setMapTypeId('map_style');
-			
-			var contentString = '<p><strong>Company Name</strong><br>Address here</p>';
-       
-			var infowindow = new google.maps.InfoWindow({
-				content: contentString
-			});
-			
-			google.maps.event.addListener(marker, 'click', function() {
-      			infowindow.open(map,marker);
-    		});
-
-		});
-	}	
-}
 
 /* ==================================================
 	Init
 ================================================== */
 
-CHAKRA.slider();
+BRUSHED.slider();
 
 $(document).ready(function(){
-	// Call placeholder.js to enable Placeholder Property for IE9
 	Modernizr.load([
 	{
-		test: Modernizr.input.placeholder,
+		test: Modernizr.placeholder,
 		nope: '_include/js/placeholder.js', 
 		complete : function() {
-				if (!Modernizr.input.placeholder) {
+				if (!Modernizr.placeholder) {
 						Placeholders.init({
 						live: true,
 						hideOnFocus: false,
@@ -507,29 +424,31 @@ $(document).ready(function(){
 		splashID: "#jSplash",
 		showSplash: true,
 		showPercentage: true,
-		autoClose: true
+		autoClose: true,
+		splashFunction: function() {
+			$('#circle').delay(250).animate({'opacity' : 1}, 500, 'linear');
+		}
 	});
 	
-	CHAKRA.nav();
-	CHAKRA.mobileNav();
-	CHAKRA.listenerMenu();
-	CHAKRA.menu();
-	CHAKRA.goSection();
-	CHAKRA.goUp();
-	CHAKRA.filter();
-	CHAKRA.fancyBox();
-	CHAKRA.contactForm();
-	CHAKRA.tweetFeed();
-	CHAKRA.scrollToTop();
-	CHAKRA.utils();
-	CHAKRA.accordion();
-	CHAKRA.toggle();
-	CHAKRA.toolTip();
-	CHAKRA.map();
+	BRUSHED.nav();
+	BRUSHED.mobileNav();
+	BRUSHED.listenerMenu();
+	BRUSHED.menu();
+	BRUSHED.goSection();
+	BRUSHED.goUp();
+	BRUSHED.filter();
+	BRUSHED.fancyBox();
+	BRUSHED.contactForm();
+	BRUSHED.tweetFeed();
+	BRUSHED.scrollToTop();
+	BRUSHED.utils();
+	BRUSHED.accordion();
+	BRUSHED.toggle();
+	BRUSHED.toolTip();
 });
 
 $(window).resize(function(){
-	CHAKRA.mobileNav();
+	BRUSHED.mobileNav();
 });
 
 });

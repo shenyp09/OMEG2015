@@ -56,24 +56,14 @@
 		margin-right: -20px;
 	}
 	
-	header .sticky-nav,
-	header .sticky-nav.stuck {
+	header .sticky-nav {
 		position: relative;	
-	}
-	
-	#home-slider .container .row {
-		width: 100%;	
-	}
-	
-	#home-slider #slidecaption {
-		font-size: 42px;	
 	}
 	
 	header .sticky-nav,
 	#navigation-mobile,
 	.page,
 	.page-alternate,
-	.map,
 	#twitter-feed,
 	footer {
 		margin-left: -20px;
@@ -84,6 +74,10 @@
 	
 	header .sticky-nav #logo {
 		margin-left: 0;
+	}
+	
+	header .sticky-nav.stuck #logo {
+		margin-left: 20px;	
 	}
 	
 	header .sticky-nav #menu {
@@ -107,6 +101,10 @@
 		margin-left: -20px;
 		margin-right: -20px;
 		margin-bottom: 0;
+	}
+	
+	header .sticky-nav.stuck #mobile-nav {
+		margin-right: 20px;	
 	}
 	
 	.work-nav {
@@ -133,6 +131,11 @@
 		margin:0 10px 0 0;	
 	}
 	
+	.work-nav #filters li a {
+		font-size: 13px;
+		text-transform: uppercase;	
+	}
+	
 	#about .profile {
 		margin-bottom: 30px;	
 	}
@@ -151,8 +154,7 @@
 		text-align: center;	
 	}
 	
-	#contact-form .submit,
-	#comment-form .submit {
+	#contact-form .submit {
 		width: 100%;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -214,16 +216,7 @@
 		display: none;	
 	}
 	
-	#home-slider .container .row {
-		width: 100%;	
-	}
-	
-	#home-slider #slidecaption {
-		font-size: 28px;	
-	}
-	
-	header .sticky-nav,
-	header .sticky-nav.stuck {
+	header .sticky-nav {
 		position: relative;	
 	}
 	
@@ -231,7 +224,6 @@
 	#navigation-mobile,
 	.page,
 	.page-alternate,
-	.map,
 	#twitter-feed,
 	footer {
 		margin-left: -20px;
@@ -240,12 +232,12 @@
 		padding-right: 20px;	
 	}
 	
-	.map {
-		height: 320px;	
-	}
-	
 	header .sticky-nav #logo {
 		margin-left: 0;
+	}
+	
+	header .sticky-nav.stuck #logo {
+		margin-left: 20px;	
 	}
 	
 	header .sticky-nav #menu {
@@ -269,6 +261,15 @@
 		margin-left: -20px;
 		margin-right: -20px;
 		margin-bottom: 0;
+	}
+	
+	#navigation-mobile li a {
+		font-size: 14px;
+		padding: 12px 0;
+	}
+	
+	header .sticky-nav.stuck #mobile-nav {
+		margin-right: 20px;	
 	}
 	
 	.work-nav {
@@ -299,6 +300,11 @@
 		margin:0 10px 0 0;	
 	}
 	
+	.work-nav #filters li a {
+		font-size: 13px;
+		text-transform: uppercase;	
+	}
+	
 	#about .profile {
 		margin-bottom: 30px;	
 	}
@@ -317,8 +323,7 @@
 		text-align: center;	
 	}
 	
-	#contact-form .submit,
-	#comment-form .submit {
+	#contact-form .submit {
 		width: 100%;
 		-webkit-box-sizing: border-box;
 		-moz-box-sizing: border-box;
@@ -367,17 +372,12 @@
 }
 
 @media (max-width: 320px) {
-	
 	#navigation-mobile li a {
 		padding: 20px 0;
 	}
 	
 	.work-nav #filters li a {
 		font-size: 12px;
-	}
-	
-	.children .comment {
-		padding-left: 0;	
 	}
 	
 	#twitter-feed {
@@ -408,11 +408,6 @@
 		.type-work {
 			background-image: url(../img/filter-icon_@2x.png);
 			background-size: 16px 16px;
-		}
-		
-		.sep .separator {
-			background-image: url(../img/seperator_@2x.png);
-			background-size: 24px 24px;
 		}
 	}
 
